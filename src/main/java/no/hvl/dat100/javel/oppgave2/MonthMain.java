@@ -21,5 +21,12 @@ public class MonthMain {
 
         double monedspris = MonthlyPower.computeSpotPrice(powerUsageMonth, powerPricesMonth);
         System.out.println("Totalt månedspris: " + monedspris + " kr");
+
+        double totalSupport = MonthlyPower.computePowerSupport(powerUsageMonth, powerPricesMonth);
+        System.out.println("Total strømstøtte for måneden: " + totalSupport + " kr");
+
+        double norgespris = MonthlyPower.computeNorgesPrice(powerUsageMonth);
+        System.out.println("Total Norgespris er; " + norgespris);
+
     }
 }

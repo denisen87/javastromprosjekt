@@ -1,5 +1,7 @@
 package no.hvl.dat100.javel.oppgave2;
+import no.hvl.dat100.javel.oppgave1.DailyPower;
 
+// a) Skrive ut månedlig strømforbruk
 public class MonthlyPower {
 
     public static void printPowerUsage(double[][] poweruse) {
@@ -11,6 +13,7 @@ public class MonthlyPower {
         }
     }
 
+    // b) Skrive ut månedlige strømpriser
     public static void printPowerPrices(double[][] prices) {
         for (double[] row : prices) {
             for (double value : row) {
@@ -20,6 +23,7 @@ public class MonthlyPower {
         }
     }
 
+    // c) Total månedlig forbruk
     public static double computePowerUsage(double[][] usage) {
         double sum = 0;
         for (double[] row : usage) {
@@ -30,7 +34,7 @@ public class MonthlyPower {
         return sum;
     }
 
-    // d) determine whether a given threshold has been exceeded
+    // d) Forbruksgrense
     public static boolean exceedThreshold(double[][] powerusage, double threshold) {
         double sum = 0; // threshold er parameter vi måler summen av månedlig forbruk mot,
         int i = 0; // threshold får en verdi når vi kjører metoden exceedThreshold
@@ -61,6 +65,7 @@ public class MonthlyPower {
         return exceeded; // returnerer overskredet verdi vist summen av forbruker overstiger grensen
     }
 
+    // e) Spotpris for måneden
     public static double computeSpotPrice(double[][] usage, double[][] prices) {
         double total = 0; // i og j er begge knyttet(peker) opp til begge tabellene usage og -
         // prices, noe som at løkken går gjennom begge tabellene for plassene og radene j og i,
@@ -72,25 +77,37 @@ public class MonthlyPower {
         }
         return total;
     }
+
     // f) power support for the month
     public static double computePowerSupport(double[][] usage, double[][] prices) {
 
         double support = 0;
-
-        // TODO
-
-        return support;
-    }
+        for (int i = 0; i < usage.length; i++) {
+            for (int j = 0; j < usage[i].length; j++) {
+                support += DailyPower.getSupport(usage[i][j], prices[i][j]); // 👈 kaller metoden
+            } // plass og rad indeksene som i oppgave e blir begge knyttet til parameterne usage-
+        } // og prices, som betyr at for løkken kjører gjennom begge tabellene usage og prices -
+        return support; // og henter ut plass verdiene, bruker så metoden get.support fra oppgave-
+    }// 1 til å printe ut støtten som blir gitt hver enkelt time,
 
     // g) Norgesprice for the month
     public static double computeNorgesPrice(double[][] usage) {
 
         double price = 0;
-
-        // TODO
-
+        double pris = 0.5;
+        for (int i = 0; i < usage.length; i++){
+            for(int j = 0; j < usage[i].length; j++ ){
+                price = price + usage[i][j]*pris;
+            }
+        }
         return price;
     }
 }
+
+
+
+
+
+
 
 

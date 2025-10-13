@@ -44,6 +44,7 @@ public class DailyPower {
     private static final double PERCENTAGE = 0.9;
 
     public static double getSupport(double usage, double price) {
+        System.out.println("DEBUG: usage = " + usage + " kWh, price = " + price + " kr/kWh");
         double support = 0;
         if (price > 0.9375) {
             support = (price-0.9375) * usage * 0.9;
